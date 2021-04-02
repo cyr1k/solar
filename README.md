@@ -1,1 +1,1 @@
-"# str8up" 
+# Straight Up Solar Exercises
