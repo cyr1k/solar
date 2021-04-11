@@ -1,0 +1,18 @@
+/* Error: Undefined mixin.
+ *    ,
+ * 17 |   @include gradient-y-three-colors(darken($color, 18%), darken($color, 15%), 40%, darken($color, 13%));
+ *    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *    '
+ *   scss\_bootswatch.scss 17:3  btn-shadow-inverse()
+ *   scss\_bootswatch.scss 50:7  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a    \2577 \a 17 \2502    @include gradient-y-three-colors(darken($color, 18%), darken($color, 15%), 40%, darken($color, 13%));\a    \2502    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   scss\\_bootswatch.scss 17:3  btn-shadow-inverse()\a   scss\\_bootswatch.scss 50:7  root stylesheet";
+}
