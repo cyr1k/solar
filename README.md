@@ -34,7 +34,7 @@ Finally, I wrote [a sample project called 'Solar Solver'](https://github.com/cyr
 
 ## Solar Solver Commentary
 
-In order to demonstrate my web development abilities and my interest in the subject matter, I developed a frontend for NREL's PVWatts calculator, which allows users to estimate how much a PV system would save them for a given location.  I used BootStrap and JQuery since I am familiar with these libraries and can see that you make use of them as well.  I leveraged Google's Maps/Places API to autocomplete addresses and allow users to see them on a familiar Maps UI.  My goal was for the form to be faster and more intuitive than NREL's official frontend, and thought it is still rough around the edges, I think I have achieved that goal.
+In order to demonstrate my web development abilities and my interest in the subject matter, I developed a frontend for NREL's PVWatts calculator, which allows users to estimate how much a PV system would save them for a given location.  I used BootStrap and JQuery since I am familiar with these libraries and can see that you make use of them as well.  I leveraged Google's Maps/Places API to autocomplete addresses and allow users to see them on a familiar Maps UI.  My goal was for the form to be faster and more intuitive than NREL's official frontend, and though it is still rough around the edges, I think I have achieved that goal.
 
 The problem with getting into a project that's actually fun / interesting is that it's hard not to be ambitious and excited about features (at some expense to code quality).  Although I don't think there is any truly egregious code, it still needs more work than I can deliver right now.  The code could stand to be refactored a bit, there are many features I would still like to implement, and many aspects of the code I would not consider ready for production (validation, error handling, user guidance, etc.).  It had been a while since I've done development of this nature and it was quite fun (and potentially actually useful to me) so I hope to expand on it outside of this exercise!
 
@@ -42,7 +42,7 @@ The problem with getting into a project that's actually fun / interesting is tha
 Clone repo and open SOLAR_SOLVER.HTML.  Input address and solar array info, then hit "Calculate!" button.  Results will appear below and can be saved as CSV/JSON via a button in the "Actions" sidebar.
 
 ### Dependencies
-All dependencies should be handled via script links in SOLAR_SOLVER.HTML; no dependencies requiring setup (ie node modules) etc. were used for the sake of simplicity when demoing the app. 
+All dependencies should be handled via script links in SOLAR_SOLVER.HTML; no dependencies requiring setup (ie node modules) were used for the sake of simplicity when demoing the app. 
 * BootStrap 5 Beta 3
 * JQuery 3.6.0
 * Google Maps/Places API (my key provided)
