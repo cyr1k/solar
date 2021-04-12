@@ -5,116 +5,220 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+  <!-- Google Maps Widget Dependency -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
+  <!-- CUSTOM CSS -->
+  <link href="css/main.css" rel="stylesheet">
   <title>Solar Solver</title>
 </head>
 
 <body>
-  <div class="container-fluid">
-
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32">
-          <use xlink:href="#bootstrap" /></svg>
-        <h1>✌🌞 Solar Solver 🌞✌</h1>
+  <div class="container" id="containerMain">
+    <header>
+      <a href="/" class=" text-dark text-decoration-none">
+        <h1>Solar Solver</h1>
       </a>
+      <h5><span>Powered by <a href="https://pvwatts.nrel.gov/pvwatts.php">NREL PVWatts</a></span></h5>
+
     </header>
-    <div class="row">
+    <div class="row g-2">
+
       <div class="col-2">
-        <h2>Do Stuff!</h2>
-        asdf
+
+        <h2>Actions</h2>
+        <div class="container content" id="containerActions">
+
+          <div class="d-grid gap-2">
+            <button type="button" class="btn btn-outline-primary inline-block"><i class="bi bi-house-door"></i>
+              Home</button>
+          </div>
+          <!-- <div class="d-grid gap-2"> -->
+
+          <!-- <button type="button" class="btn btn-outline-danger"><i class="bi bi-x-square"></i> Reset Form</button>
+          </div> -->
+
+          <div class="d-grid gap-2">
+
+            <button type="button" class="btn btn-outline-success" id="buttonSaveReport"><i class="bi bi-newspaper"></i>
+              Save All Reports</button>
+
+          </div>
+
+        </div>
       </div>
       <div class="col-10">
+        <h2>Calculations</h2>
+        <div class="container content" id="containerCalculations">
+          <div class="row g-2">
+            <div id="gMap">
 
-        <h2>Calculate Stuff!</h2>
+              <h3>Location</h3>
+              <div class="pac-card" id="pac-card">
+                <div>
+                  <div id="title">Autocomplete search</div>
+                  <div id="type-selector" class="pac-controls">
+                    <input type="radio" name="type" id="changetype-all" checked="checked" />
+                    <label for="changetype-all">All</label>
 
-        <div class="row g-2">
-          <div class="col-md">
-            <div class="form-floating">
-              <input type="text" class="form-control" id="inputAPIKey"
-                placeholder="TgLr3h6XUeQnpRVmTNkf5jf9rEB4gJXqeJzbeGZi"
-                value = "TgLr3h6XUeQnpRVmTNkf5jf9rEB4gJXqeJzbeGZi">
-              <label for="inputAPIKey">API Key</label>
+                    <input type="radio" name="type" id="changetype-establishment" />
+                    <label for="changetype-establishment">Establishments</label>
+
+                    <input type="radio" name="type" id="changetype-address" />
+                    <label for="changetype-address">Addresses</label>
+
+                    <input type="radio" name="type" id="changetype-geocode" />
+                    <label for="changetype-geocode">Geocodes</label>
+                  </div>
+                  <br />
+                  <div id="strict-bounds-selector" class="pac-controls">
+                    <input type="checkbox" id="use-location-bias" value="" checked />
+                    <label for="use-location-bias">Bias to map viewport</label>
+
+                    <input type="checkbox" id="use-strict-bounds" value="" />
+                    <label for="use-strict-bounds">Strict bounds</label>
+                  </div>
+                </div>
+                <div id="pac-container">
+                  <input id="pac-input" type="text" placeholder="Enter a location" />
+                </div>
+              </div>
+              <div id="map"></div>
+              <div id="infowindow-content">
+                <span id="place-name" class="title"></span><br />
+                <span id="place-address"></span>
+              </div>
+
+
             </div>
           </div>
-        </div>
-        <div class="row g-2">
-          <div class="col-md-9">
-            <label for="inputCapacity" class="form-label">System Capacity (kwH)</label>
-            <input type="range" class="form-range" min="0.5" max="50" step="0.5" id="inputCapacity">
-          </div>
-          <div class="col-md-3">
-              <label for="inputLosses" class="form-label">Losses</label>
-              <input type="range" class="form-range" min="-.05" max="0.990" step="0.05" id="inputLosses">
-          </div>
-        </div>
-        <div class="row g-2">
-          <div class="col-md">
-            <div class="form-floating">
-              <select class="form-select" id="inputModuleType" aria-label="Floating label select example">
-                <option value="0" selected>Standard</option>
-                <option value="1">Premium</option>
-                <option value="2">Thin Film</option>
-              </select>
-              <label for="inputModuleType">Module Type</label>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="form-floating">
-              <select class="form-select" id="inputArrayType" aria-label="Floating label select example">
-                <option value="0" selected>Fixed</option>
-                <option value="1">Fixed (Roof-Mounted)</option>
-                <option value="2">1-Axis</option>
-                <option value="3">1-Axis (Backtracking)</option>
-                <option value="4">2-Axis</option>
+          <div class="row g-2">
+            <div class="col-md-12">
 
-              </select>
-              <label for="inputArrayType">Array Type</label>
+              <label for="inputAddress">Address</label>
+              <input type="text" class="form-control" id="inputAddress">
             </div>
           </div>
-        </div>
-        <div class="row g-2">
-          <div class="col-md-6">
+          <div class="row g-2">
+            <div class="col-md-6">
+              <label for="inputLat">Latitude</label>
+              <input type="text" class="form-control" id="inputLat">
+            </div>
+            <div class="col-md-6">
+              <label for="inputLong">Longitude</label>
+              <input type="text" class="form-control" id="inputLong">
+            </div>
+          </div>
+
+          <div class="row g-2">
+            <h3>System Output</h3>
+
+
+
+            <div class="row g-2">
+
+              <label for="inputCapacity" class="form-label">System Capacity (kwH)</label>
+              <input type="range" class="form-range" min="0.5" max="50" step="0.5" value=".5" id="inputCapacity"></div>
+            <span class="label" id="labelCapacity">0.5 kWH</span>
+          </div>
+          <div class="row g-2">
+
+            <label for="inputLosses" class="form-label">Losses</label>
+            <input type="range" class="form-range" min="-.05" max="0.990" step="0.01" value=".10" id="inputLosses">
+            <span class="label" id="labelLosses">10 %</span>
+
+          </div>
+
+          <h3>Module Type / Array Type</h3>
+          <div class="row g-2">
+            <div class="col-md">
+              <div class="form-floating">
+                <select class="form-select" id="inputModuleType" aria-label="Floating label select example">
+                  <option value="0" selected>Standard</option>
+                  <option value="1">Premium</option>
+                  <option value="2">Thin Film</option>
+                </select>
+                <label for="inputModuleType">Module Type</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+                <select class="form-select" id="inputArrayType" aria-label="Floating label select example">
+                  <option value="0" selected>Fixed</option>
+                  <option value="1">Fixed (Roof-Mounted)</option>
+                  <option value="2">1-Axis</option>
+                  <option value="3">1-Axis (Backtracking)</option>
+                  <option value="4">2-Axis</option>
+                </select>
+                <label for="inputArrayType">Array Type</label>
+              </div>
+            </div>
+          </div>
+          <h3>Panel Orientation</h3>
+
+
+          <div class="row g-2">
             <label for="inputTilt" class="form-label">Tilt (Degrees)</label>
-            <input type="range" class="form-range" min="0" max="90" step="1" id="inputTilt">
-          </div>
-          <div class="col-md-6">
-              <label for="inputAzimuth" class="form-label">Azimuth (Degrees)</label>
-              <input type="range" class="form-range" min="0" max="360" step="1" id="inputAzimuth">
-          </div>
-        </div>
-      
-        <div class="row g-2">
-            <button type="button" class="btn btn-success" id="buttonCalculate">Calculate!</button>
-        </div>
-        <div id = "result">
+            <input type="range" class="form-range" value="0" min="0" max="90" step="1" id="inputTilt">
+            <span class="label" id="labelTilt">0 degrees</span>
 
+          </div>
+          <div class="row g-2">
+            <label for="inputAzimuth" class="form-label">Azimuth (Degrees)</label>
+            <input type="range" class="form-range" value="0" min="0" max="360" step="1" id="inputAzimuth">
+            <span class="label" id="labelAzimuth">0 degrees</span>
+
+          </div>
+
+          <h3>Utility Rates</h3>
+
+
+          <div class="row g-2">
+            <div class="col-md-6">
+              <label for="inputLat">Rate ($/kWh)</label>
+              <input type="text" class="form-control" id="inputUtilityRate" value="0.091">
+            </div>
+            <div class="col-md-6">
+              <label for="inputArrayType">Service Type</label>
+              <select class="form-select" id="inputArrayType">
+                <option value="0" selected>Residential</option>
+                <option value="1">Commercial</option>
+
+              </select>
+            </div>
+
+            <div class="row g-2">
+              <button type="button" class="btn btn-success" id="buttonCalculate">Calculate!</button>
+            </div>
+
+
+          </div>
+        </div>
+        <h2>Results</h2>
+        <div class="container content" id="containerResults">
+          <div id="resultInputTable"></div>
+          <div id="resultOutputTable"></div>
+          <div id="resultJson"></div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- format - json/xml  -->
-  <!-- api key -->
-  <!-- system_capacity - kwH .05 to 500000 -->
-  <!-- module_type 0 = standard, 1 = premium, 2 = thin film -->
-  <!-- losses - -5 to 99 % -->
-  <!-- array_type 0 = fixed, 1 = fixed roof mounted, 2 = 1-axis, 3 = 1-axis backtracking, 4 = 2-axis -->
-  <!-- tilt = 0 to 90 degrees -->
-  <!-- azimuth - 0 to 360 degrees -->
-  <!-- address -->
-  <!-- lat -90 to 90 -->
-  <!-- long -180 to 180 -->
+
+
   </div>
 
 
-
-
-  
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWjUWitSZgoD7KIV0MRGsOVmGqn-fqZJ4&callback=initMap&libraries=places&v=weekly"
+    async></script>
 
   <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
@@ -122,6 +226,9 @@
   </script>
   <!-- jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- json2csv -->
+  <script src="https://cdn.jsdelivr.net/npm/json2csv"></script>
+  <!-- CUSTOM JS -->
   <script src="js.js"></script>
 
 </body>
