@@ -1,7 +1,7 @@
 // Constants
-// TODO Protect API Key
 const BASEURL = "https://developer.nrel.gov/api/pvwatts/v6.json"
 const PVWATTS_API_KEY = "TgLr3h6XUeQnpRVmTNkf5jf9rEB4gJXqeJzbeGZi";
+
 var pvwattsResult = "";
 
 // Event Handler for Calculate Button - Where the magic happens - Causes API Call and Table Generation
@@ -53,7 +53,7 @@ $("#buttonSaveReport").on("click", function (event) {
 
 });
 
-// Flatten PWAtts Outputs to HTML Tables
+// Flatten PVWAtts Outputs to HTML Tables
 function createOutputTable(json) {
   var outputs = json.outputs;
   var numMonths = Object.keys(json.outputs.ac_monthly).length;
@@ -145,6 +145,27 @@ $("#inputTilt").on("mousemove", function (event) {
 $("#inputAzimuth").on("mousemove", function (event) {
   $("#labelAzimuth").text($("#inputAzimuth").val() + " degrees");
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // vvvvvvvvvv ~ NOT MY CODE ~ vvvvvvvvv
 
