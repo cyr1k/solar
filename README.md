@@ -23,3 +23,56 @@ With that said, and without knowing the specifics of your CRM, data integrity is
    _This may or may not be worthwhile depending on the dynamics of your customer base, agent workload, etc.  It might be a nice data point to have for customer management and analytics purposes, especially if you have a lot of larger clients with many contacts.  I would assume that job title is already being logged by the agent at point of contact, so I think this suggestion is less important than others._
 
 This was an interesting exercise to me.  I think that the form in its current state likely does its job well, but these suggestions are worth considering.  I would be interested to hear your thoughts about the design of the form, the nature of any data integrity issues, your CRM implementation, analytic strategies, and general customer conversion processes.  Thank you for enduring my wall of text; I feel that I may have risked drop-off :)
+
+## GitHub / Example Code
+> If you have a GitHub (or similar) account, provide a link to a project there that you’d like to share with us.  If you do not have a GitHub account, please share a coding sample with us sized around 50 - 200 lines of code.  In addition to the code, please write a paragraph or two describing what the code does.
+
+My github can be found [here](https://www.github.com/cyr1k/).  I recently added some of my old FrontEnd work from [CodePen](https://codepen.io/zedri) to my  [Gists](https://gist.github.com/cyr1k).  I added a couple old semi-professional projects; after 3 years of professional employment, there are a lot of things I would have done differently on these, and I think that's a good thing!
+
+
+Finally, I wrote [a sample project called 'Solar Solver'](https://github.com/cyr1k/str8up/tree/main/solar_solver) specifically for this exercise.  Commentary is below.
+
+## Solar Solver Commentary
+
+In order to demonstrate my web development abilities and my interest in the subject matter, I developed a frontend for NREL's PVWatts calculator, which allows users to estimate how much a PV system would save them for a given location.  I used BootStrap and JQuery since I am familiar with these libraries and can see that you make use of them as well.  I leveraged Google's Maps/Places API to autocomplete addresses and allow users to see them on a familiar Maps UI.  My goal was for the form to be faster and more intuitive than NREL's official frontend, and thought it is still rough around the edges, I think I have achieved that goal.
+
+The problem with getting into a project that's actually fun / interesting is that it's hard not to be ambitious and excited about features (at some expense to code quality).  Although I don't think there is any truly egregious code, it still needs more work than I can deliver right now.  The code could stand to be refactored a bit, there are many features I would still like to implement, and many aspects of the code I would not consider ready for production (validation, error handling, user guidance, etc.).  It had been a while since I've done development of this nature and it was quite fun (and potentially actually useful to me) so I hope to expand on it outside of this exercise!
+
+### How To Use
+Clone repo and open SOLAR_SOLVER.HTML.  Input address and solar array info, then hit "Calculate!" button.  Results will appear below and can be saved as CSV/JSON via a button in the "Actions" sidebar.
+
+### Dependencies
+All dependencies should be handled via script links in SOLAR_SOLVER.HTML; no dependencies requiring setup (ie node modules) etc. were used for the sake of simplicity when demoing the app. 
+* BootStrap 5 Beta 3
+* JQuery 3.6.0
+* Google Maps/Places API (my key provided)
+* NREL PVWatts API (my key provided)
+### Known Issues
+* Form fields lack validation
+* Table generation in JS like this seems like a bad practice in the long run. Already kinda repetitive...
+* Google Maps API Widget is sometimes a bit buggy when refreshing/selecting address
+* Bootstrap Range Sliders seem to be a bit buggy
+  * Mouse-over event handling on sliders to display current value is probably overly-expensive
+  * Other CSS frameworks (IE MD-Bootstrap) have this feature implemented nicely natively
+
+### Improvement Ideas
+* An actual backend to store results
+  * SQL, ORM, etc.
+* Allow saving of specific reports instead of "all or nothing"
+  * Possibly an Excel with multiple sheets?
+* UI / UX Enhancements
+  * Tooltips / Popups explaining each field
+  * Make sections collapsible
+    * Do it automatically as convenient per context
+  * Button to clear all fields
+  * Visualization of Radius/Azimuth
+* Additional Pages
+  * Battery Calculator
+  * System Part Requirement Analyzer / Visualizer
+  * Utility Cost Lookup
+* Potentially Helpful Technologies
+  * SASS / SCSS
+  * Modern JS Framework (ie React)
+  
+### Screenshot
+![Solar Solver Screenshot](./solar_solver/screenshot.png "Logo Title Text 1")
